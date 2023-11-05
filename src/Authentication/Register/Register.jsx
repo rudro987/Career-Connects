@@ -1,8 +1,27 @@
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 const Register = () => {
-    return (
-        <div>
+    const [image, setImage] = useState(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const formSubmit = (data) => {
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+
+  };
+
+  return (
+    <div>
       <div className="py-16">
         <div className="mt-7 max-w-md mx-auto bg-[#f1f7f4] border border-lightGray rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div className="p-4 sm:p-7">
@@ -22,7 +41,7 @@ const Register = () => {
             </div>
 
             <div className="mt-5">
-              <form>
+              <form onSubmit={handleSubmit(formSubmit)}>
                 <div className="grid gap-y-4">
                   <div>
                     <label
@@ -34,11 +53,13 @@ const Register = () => {
                     <div className="relative">
                       <input
                         type="text"
-                        id="name"
-                        name="name"
+                        placeholder="Enter your name"
                         className="py-3 px-4 block w-full border border-lightGray rounded-md text-sm focus-visible:outline-none focus:border-oliveGreen  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        required
+                        {...register("name", {
+                          required: "Please enter your name",
+                        })}
                       />
+                      {errors?.name && <p className="text-sm mt-1 text-oliveGreen font-medium">{errors.name.message}</p>}
                     </div>
                   </div>
 
@@ -52,12 +73,14 @@ const Register = () => {
                     <div className="relative">
                       <input
                         type="email"
-                        id="email"
-                        name="email"
+                        placeholder="Enter your email address"
                         className="py-3 px-4 block w-full border border-lightGray rounded-md text-sm focus-visible:outline-none focus:border-oliveGreen  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        required
+                        {...register("email", {
+                          required: "Please enter your email address",
+                        })}
                       />
                     </div>
+                    {errors?.email && <p className="text-sm mt-1 text-oliveGreen font-medium">{errors.email.message}</p>}
                   </div>
 
                   <div>
@@ -72,26 +95,38 @@ const Register = () => {
                     <div className="relative">
                       <input
                         type="password"
-                        id="password"
-                        name="password"
+                        placeholder="Enter password"
                         className="py-3 px-4 block w-full border border-lightGray rounded-md text-sm focus-visible:outline-none focus:border-oliveGreen dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        required
+                        {...register("password", {
+                          required: "Please enter a password",
+                          minLength: {
+                            value: 6,
+                            message: "Password should be at least 6 characters long",
+                          },
+                          pattern: {
+                            value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
+                            message: "Password must contain at least one uppercase letter and one special symbol",
+                          },
+                        })}
                       />
+                      {errors?.password && <p className="text-sm mt-1 text-oliveGreen font-medium">{errors.password.message}</p>}
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm mb-2 dark:text-white">
-                      Your image URL
+                      Upload your image
                     </label>
                     <div className="relative">
                       <input
                         type="file"
-                        id="image"
-                        name="image"
                         className="py-3 px-4 block w-full border border-lightGray rounded-md text-sm focus-visible:outline-none focus:border-oliveGreen  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        required
+                        {...register('image', {
+                            onChange: e => setImage(e.target.file[0]),
+                            required: "Please upload your image"
+                        })}
                       />
+                      {errors?.image && <p className="text-sm mt-1 text-oliveGreen font-medium">{errors.image.message}</p>}
                     </div>
                   </div>
 
@@ -107,8 +142,9 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
-    );
+  );
 };
 
 export default Register;

@@ -1,21 +1,54 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
+  const { userLogin, loginWithGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const formSubmit = data => {
+  const formSubmit = (data) => {
     const email = data.email;
     const password = data.password;
-    console.log(email, password)
-  }
+
+    userLogin(email, password)
+      .then((res) => {
+        toast.success(
+          `${res.user.displaYname}, you are successfully logged in!`
+        );
+        setTimeout(() => {
+          navigate(location?.state ? location.state : "/");
+        }, 1500);
+      })
+      .catch((err) => {
+        if (err.code === "auth/invalid-login-credentials") {
+          toast.error("Login error: Email or Password is incorrect!");
+        }
+      });
+  };
+
+  const googleSignIn = () => {
+    loginWithGoogle()
+      .then((res) => {
+        toast.success(
+          `${res.user.displayName} you are successfully logged in!`
+        );
+        setTimeout(() => {
+          navigate(location?.state ? location.state : "/");
+        }, 1500);
+      })
+      .catch((err) => toast.error(err.message));
+  };
 
   return (
     <div className="py-16">
@@ -38,6 +71,7 @@ const Login = () => {
 
           <div className="mt-5">
             <button
+              onClick={googleSignIn}
               type="button"
               className="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-lightGray font-medium bg-white text-charcoalGray shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
             >
@@ -90,7 +124,11 @@ const Login = () => {
                         required: "Please enter a valid email address",
                       })}
                     />
-                    {errors.email && <p className="text-sm mt-1 text-oliveGreen font-medium">{errors.email.message}</p>}
+                    {errors.email && (
+                      <p className="text-sm mt-1 text-oliveGreen font-medium">
+                        {errors.email.message}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -110,18 +148,13 @@ const Login = () => {
                       className="py-3 px-4 block w-full border border-lightGray rounded-md text-sm focus-visible:outline-none focus:border-oliveGreen dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                       {...register("password", {
                         required: "Please enter a password",
-                        minLength: {
-                          value: 6,
-                          message:
-                            "Password should be at least 6 characters long",
-                        },
-                        pattern: {
-                          value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
-                          message: "Password must contain at least one uppercase letter and one special symbol",
-                        }
                       })}
                     />
-                    {errors.password && <p className="text-sm mt-1 text-oliveGreen font-medium">{errors.password.message}</p>}
+                    {errors.password && (
+                      <p className="text-sm mt-1 text-oliveGreen font-medium">
+                        {errors.password.message}
+                      </p>
+                    )}
                   </div>
                 </div>
 

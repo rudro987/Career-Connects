@@ -24,7 +24,7 @@ const Login = () => {
     userLogin(email, password)
       .then((res) => {
         toast.success(
-          `${res.user.displaYname}, you are successfully logged in!`
+          `${res.user.displayName}, you are successfully logged in!`
         );
         setTimeout(() => {
           navigate(location?.state ? location.state : "/");

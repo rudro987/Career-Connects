@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,11 +13,14 @@ const Register = () => {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
   const formSubmit = async (data) => {
@@ -27,31 +30,34 @@ const Register = () => {
     const email = data.email;
     const password = data.password;
 
-    const imageRef = image
-      ? ref(
-          storage,
-          `images/${data.name}_${dateTime}/${image.name}_${dateTime}`
-        )
-      : null;
-    try {
-      await uploadBytes(imageRef, image);
-      const imageUrl = await getDownloadURL(imageRef);
-      setImageUrl(imageUrl);
-    } catch (err) {
-      toast.error(err.message);
-    }
+    const imageRef =
+      image &&
+      ref(storage, `images/${data.name}_${dateTime}/${image.name}_${dateTime}`);
 
-    registerUser(email, password)
-      .then((res) => {
-        updateProfile(res.user, {
-          displayName: name,
-          photoURL: imageUrl,
-        })
-          .then()
-          .catch();
-        toast.success(`${name}, you have been registered successfully!`);
-        reset();
-        
+    await uploadBytes(imageRef, image)
+      .then(async () => {
+        const uploadedImage = await getDownloadURL(imageRef);
+        setImageUrl(uploadedImage);
+        console.log(imageUrl);
+
+        registerUser(email, password)
+          .then((res) => {
+            updateProfile(res.user, {
+              displayName: name,
+              photoURL: uploadedImage,
+            })
+              .then(() => {
+                toast.success(
+                  `${name}, you have been registered successfully!`
+                );
+                reset();
+                setTimeout(() => {
+                  navigate(location?.state ? location.state : "/");
+                }, 1000)
+              })
+              .catch((err) => toast.error(err.message));
+          })
+          .catch((err) => toast.error(err.message));
       })
       .catch((err) => toast.error(err.message));
   };
@@ -192,7 +198,9 @@ const Register = () => {
                   </button>
                 </div>
               </form>
-              {loading && <div className="text-center">Uploading... Please wait.</div>}
+              {loading && (
+                <div className="text-center">Uploading... Please wait.</div>
+              )}
             </div>
           </div>
         </div>

@@ -1,6 +1,22 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Header = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+  const [isDropDown, setIsDropDown] = useState(false);
+
+  const handleLogOut = () => {
+    logOutUser()
+      .then(() => {
+        setIsDropDown(false);
+        toast.success(`${user.displayName}, you are logged out!`);
+      })
+      .catch((err) => toast.error(err.message));
+  };
+
   return (
     <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-oliveGreen border-b border-white/[.5] text-sm py-3 sm:py-0">
       <nav
@@ -71,25 +87,63 @@ const Header = () => {
             >
               Blog
             </Link>
-
             <Link
-              className="flex items-center gap-x-2 font-medium bg-skyBlue pl-5 pr-7 py-4 rounded-md text-white/[.8] hover:text-white sm:my-6 sm:pl-6"
-              to="/login"
+              className="font-medium text-white/[.8] hover:text-white sm:py-6"
+              to="#"
             >
-              <svg
-                className="w-4 h-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-              </svg>
-              Log in
+              User Profile
             </Link>
+
+            <div>
+              {user ? (
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div
+                    className="w-20 py-5"
+                    onMouseEnter={() => setIsDropDown(true)}
+                    onMouseLeave={() => setIsDropDown(false)}
+                  >
+                    <img
+                      src={user.photoURL || `https://i.ibb.co/sH0Fh3T/user.png`}
+                      alt={user.displayName}
+                      className="rounded-full w-12"
+                    />
+                    {isDropDown && (
+                      <div className="absolute w-48 -ml-10 bg-oliveGreen rounded-md px-5 py-6 text-center font-medium text-white/[.8] hover:text-white flex flex-col gap-4">
+                        <p className="font-bold">Hello, {user.displayName} !</p>
+                        <Link to="#">Update Profile</Link>
+                        <Link
+                          type="button"
+                          onClick={handleLogOut}
+                          className="bg-skyBlue p-2 rounded-md"
+                        >
+                          Log out
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </label>
+              ) : (
+                <Link
+                  className="flex items-center gap-x-2 font-medium bg-skyBlue pl-5 pr-7 py-4 rounded-md text-white/[.8] hover:text-white sm:my-6 sm:pl-6"
+                  to="/login"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                  </svg>
+                  Log in
+                </Link>
+              )}
+            </div>
           </div>
         </div>
+        <ToastContainer />
       </nav>
     </header>
   );

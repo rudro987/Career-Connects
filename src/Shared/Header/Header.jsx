@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Header = () => {
-  const { user, logOutUser } = useContext(AuthContext);
+  const { user, logOutUser, loading } = useContext(AuthContext);
   const [isDropDown, setIsDropDown] = useState(false);
 
   const handleLogOut = () => {
@@ -16,6 +16,10 @@ const Header = () => {
       })
       .catch((err) => toast.error(err.message));
   };
+
+  if(loading) return <h1>Loading....</h1>
+
+  
 
   return (
     <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-oliveGreen border-b border-white/[.5] text-sm py-3 sm:py-0">
@@ -70,43 +74,71 @@ const Header = () => {
           <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">
             <Link
               className="font-medium text-white sm:py-6"
-              to="#"
+              to="/"
               aria-current="page"
             >
               Home
             </Link>
             <Link
               className="font-medium text-white/[.8] hover:text-white sm:py-6"
-              to="#"
+              to="/all-jobs"
             >
               All Jobs
             </Link>
             <Link
               className="font-medium text-white/[.8] hover:text-white sm:py-6"
-              to="#"
+              to="/blog"
             >
               Blog
             </Link>
             <Link
               className="font-medium text-white/[.8] hover:text-white sm:py-6"
-              to="#"
+              to="/user-profile"
             >
               User Profile
             </Link>
+            {user && (
+              <>
+                <Link
+                  className="font-medium text-white/[.8] hover:text-white sm:py-6"
+                  to="/add-a-job"
+                >
+                  Add a Job
+                </Link>
+                <Link
+                  className="font-medium text-white/[.8] hover:text-white sm:py-6"
+                  to="/my-jobs"
+                >
+                  My Jobs
+                </Link>
+                <Link
+                  className="font-medium text-white/[.8] hover:text-white sm:py-6"
+                  to="/applied-jobs"
+                >
+                  Applied Jobs
+                </Link>
+              </>
+            )}
 
             <div>
               {user ? (
+
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div
                     className="w-20 py-5"
                     onMouseEnter={() => setIsDropDown(true)}
                     onMouseLeave={() => setIsDropDown(false)}
                   >
-                    <img
+                    {
+                      loading ? <h1>Loading....</h1> : (
+                        <img
                       src={user.photoURL || `https://i.ibb.co/sH0Fh3T/user.png`}
                       alt={user.displayName}
                       className="rounded-full w-12"
                     />
+                      )
+                    }
+                    
                     {isDropDown && (
                       <div className="absolute w-48 -ml-10 bg-oliveGreen rounded-md px-5 py-6 text-center font-medium text-white/[.8] hover:text-white flex flex-col gap-4">
                         <p className="font-bold">Hello, {user.displayName} !</p>

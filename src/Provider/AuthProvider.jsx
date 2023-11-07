@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
         return () => unSubscribe();
     }, []);
 
-    const authenticationInfo = {user, registerUser, loading, userLogin, loginWithGoogle, logOutUser};
+    const authenticationInfo = {user, setUser, registerUser, loading, userLogin, loginWithGoogle, logOutUser};
 
     return (
         <div>

@@ -7,11 +7,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../Config/firebase.config";
+import { useMutation } from "@tanstack/react-query";
+import { postUser } from "../../api/Api";
 
 const Register = () => {
-  const { registerUser, loading } = useContext(AuthContext);
+  const { user, setUser, registerUser, loading } = useContext(AuthContext);
   const [image, setImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,8 +21,11 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
+
+  const { mutateAsync } = useMutation({
+    mutationFn: postUser,
+  });
 
   const formSubmit = async (data) => {
     const dateTime = Date.now();
@@ -30,15 +34,20 @@ const Register = () => {
     const email = data.email;
     const password = data.password;
 
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+
     const imageRef =
       image &&
       ref(storage, `images/${data.name}_${dateTime}/${image.name}_${dateTime}`);
 
-    await uploadBytes(imageRef, image)
-      .then(async () => {
+    try {
+      if (imageRef) {
+        await uploadBytes(imageRef, image);
         const uploadedImage = await getDownloadURL(imageRef);
-        setImageUrl(uploadedImage);
-        console.log(imageUrl);
 
         registerUser(email, password)
           .then((res) => {
@@ -46,20 +55,30 @@ const Register = () => {
               displayName: name,
               photoURL: uploadedImage,
             })
-              .then(() => {
-                toast.success(
-                  `${name}, you have been registered successfully!`
-                );
-                reset();
-                setTimeout(() => {
-                  navigate(location?.state ? location.state : "/");
-                }, 1000)
+              .then(async () => {
+                setUser(res.user);
+                const imageUrl = res.user.photoURL;
+                formData.append("image", imageUrl);
+
+                try {
+                  await mutateAsync(formData);
+                  toast.success(
+                    `${name}, you have been registered successfully!`
+                  );
+                  setTimeout(() => {
+                    navigate(location?.state ? location.state : "/");
+                  }, 1000);
+                } catch (error) {
+                  console.error(error.message);
+                }
               })
               .catch((err) => toast.error(err.message));
           })
           .catch((err) => toast.error(err.message));
-      })
-      .catch((err) => toast.error(err.message));
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -198,10 +217,8 @@ const Register = () => {
                   </button>
                 </div>
               </form>
-              {loading && (
-                <div className="text-center">Uploading... Please wait.</div>
-              )}
             </div>
+            {loading && <div className="mt-2">Uploading files please wait...</div>}
           </div>
         </div>
       </div>

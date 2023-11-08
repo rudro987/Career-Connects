@@ -50,7 +50,13 @@ const AddJob = () => {
     formData.append('salaryRange', data.salaryRange);
     formData.append('jobDescription', data.jobDescription);
     formData.append('postDate', data.postDate);
-    formData.append('applicationDeadline', data.applicationDeadline);
+    const formatedDate = data.applicationDeadline.toLocaleString("en-US", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+      });
+    formData.append('applicationDeadline', formatedDate);
     formData.append('applicantsNumber', applicantsNumber);
 
     const logoRef =

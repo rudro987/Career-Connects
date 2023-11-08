@@ -18,14 +18,14 @@ const Header = () => {
   };
 
   return (
-    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-oliveGreen border-b border-white/[.5] text-sm py-3 sm:py-0">
+    <header className="flex flex-wrap shadow-md sm:justify-start sm:flex-nowrap z-50 w-full border-b border-white/[.5] text-sm py-3 sm:py-0">
       <nav
         className="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 py-3"
         aria-label="Global"
       >
         <div className="flex items-center justify-between">
           <Link
-            className="flex-none text-xl font-semibold text-white"
+            className="flex-none text-xl font-semibold text-charcoalGray"
             to="#"
             aria-label="Brand"
           >
@@ -69,26 +69,26 @@ const Header = () => {
         >
           <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">
             <Link
-              className="font-medium text-white sm:py-6"
+              className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
               to="/"
               aria-current="page"
             >
               Home
             </Link>
             <Link
-              className="font-medium text-white/[.8] hover:text-white sm:py-6"
+              className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
               to="/all-jobs"
             >
               All Jobs
             </Link>
             <Link
-              className="font-medium text-white/[.8] hover:text-white sm:py-6"
+              className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
               to="/blog"
             >
               Blog
             </Link>
             <Link
-              className="font-medium text-white/[.8] hover:text-white sm:py-6"
+              className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
               to="/user-profile"
             >
               User Profile
@@ -96,19 +96,19 @@ const Header = () => {
             {user && (
               <>
                 <Link
-                  className="font-medium text-white/[.8] hover:text-white sm:py-6"
+                  className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
                   to="/add-a-job"
                 >
                   Add a Job
                 </Link>
                 <Link
-                  className="font-medium text-white/[.8] hover:text-white sm:py-6"
+                  className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
                   to="/my-jobs"
                 >
                   My Jobs
                 </Link>
                 <Link
-                  className="font-medium text-white/[.8] hover:text-white sm:py-6"
+                  className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
                   to="/applied-jobs"
                 >
                   Applied Jobs
@@ -133,13 +133,13 @@ const Header = () => {
                     />
                     
                     {isDropDown && (
-                      <div className="absolute w-48 -ml-10 bg-oliveGreen rounded-md px-5 py-6 text-center font-medium text-white/[.8] hover:text-white flex flex-col gap-4">
+                      <div className="absolute w-48 -ml-10 shadow-md rounded-md px-5 py-6 text-center font-medium text-charcoalGray hover:text-charcoalGray/[.8] flex flex-col gap-4">
                         <p className="font-bold">Hello, {user.displayName} !</p>
-                        <Link to="#">Update Profile</Link>
+                        <Link to="#" className="underline">Update Profile</Link>
                         <Link
                           type="button"
                           onClick={handleLogOut}
-                          className="bg-skyBlue p-2 rounded-md"
+                          className="bg-oliveGreen p-2 rounded-md text-white/[.8] hover:text-white"
                         >
                           Log out
                         </Link>
@@ -149,7 +149,7 @@ const Header = () => {
                 </label>
               ) : (
                 <Link
-                  className="flex items-center gap-x-2 font-medium bg-skyBlue pl-5 pr-7 py-4 rounded-md text-white/[.8] hover:text-white sm:pl-6"
+                  className="flex items-center gap-x-2 font-medium bg-oliveGreen pl-5 pr-7 py-4 rounded-md text-white/[.8] hover:text-white sm:pl-6"
                   to="/login"
                 >
                   <svg

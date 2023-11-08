@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 const AllJobsTable = ({ job }) => {
-  console.log(job);
-  const { jobTitle, postedBy, postDate, applicationDeadline, salaryRange } =
+  const { _id, jobTitle, postedBy, postDate, applicationDeadline, salaryRange } =
   job;
-    console.log(jobTitle, postedBy, postDate, applicationDeadline, salaryRange)
   return (
     <tr className="odd:bg-white even:bg-gray-100 dark:odd:bg-slate-900 dark:even:bg-slate-800 text-center">
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
@@ -22,12 +22,13 @@ const AllJobsTable = ({ job }) => {
         {salaryRange}
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-        <button
+        <Link
           type="button"
+          to={`/all-jobs/${_id}`}
           className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
         >
           View Details
-        </button>
+        </Link>
       </td>
     </tr>
   );

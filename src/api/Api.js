@@ -14,3 +14,8 @@ export const getAllJobs = async () => {
     const response = await axios.get(`${import.meta.env.VITE_API_URL}/all-jobs`);
     return response.data;
 }
+
+export const getSingleJob = async (jobId) => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/all-jobs/${jobId}`);
+    return response.data;
+}

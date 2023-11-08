@@ -17,14 +17,10 @@ const Header = () => {
       .catch((err) => toast.error(err.message));
   };
 
-  if(loading) return <h1>Loading....</h1>
-
-  
-
   return (
     <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-oliveGreen border-b border-white/[.5] text-sm py-3 sm:py-0">
       <nav
-        className="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
+        className="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 py-3"
         aria-label="Global"
       >
         <div className="flex items-center justify-between">
@@ -122,22 +118,19 @@ const Header = () => {
 
             <div>
               {user ? (
-
+                
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div
-                    className="w-20 py-5"
+                    className="w-20"
                     onMouseEnter={() => setIsDropDown(true)}
                     onMouseLeave={() => setIsDropDown(false)}
                   >
-                    {
-                      loading ? <h1>Loading....</h1> : (
+                  {loading && <h1>...</h1> }
                         <img
                       src={user.photoURL || `https://i.ibb.co/sH0Fh3T/user.png`}
                       alt={user.displayName}
                       className="rounded-full w-12"
                     />
-                      )
-                    }
                     
                     {isDropDown && (
                       <div className="absolute w-48 -ml-10 bg-oliveGreen rounded-md px-5 py-6 text-center font-medium text-white/[.8] hover:text-white flex flex-col gap-4">
@@ -156,7 +149,7 @@ const Header = () => {
                 </label>
               ) : (
                 <Link
-                  className="flex items-center gap-x-2 font-medium bg-skyBlue pl-5 pr-7 py-4 rounded-md text-white/[.8] hover:text-white sm:my-6 sm:pl-6"
+                  className="flex items-center gap-x-2 font-medium bg-skyBlue pl-5 pr-7 py-4 rounded-md text-white/[.8] hover:text-white sm:pl-6"
                   to="/login"
                 >
                   <svg
@@ -173,6 +166,7 @@ const Header = () => {
                 </Link>
               )}
             </div>
+            
           </div>
         </div>
         <ToastContainer />

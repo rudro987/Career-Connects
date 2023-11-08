@@ -9,9 +9,10 @@ import { storage } from "../../Config/firebase.config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useMutation } from "@tanstack/react-query";
 import { postJob } from "../../api/Api";
+import Loader from "../../components/Loader";
 
 const AddJob = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   const [companyLogo, setCompanyLogo] = useState(null);
   const [banner, setBanner] = useState(null);
@@ -62,7 +63,7 @@ const AddJob = () => {
       banner &&
       ref(
         storage,
-        `banners/${data.name}_${dateTime}/${bannerRef.name}_${dateTime}`
+        `banners/${data.name}_${dateTime}/${banner.name}_${dateTime}`
       );
 
     if (logoRef) {
@@ -93,6 +94,7 @@ const AddJob = () => {
       }
 
   };
+  loading && <Loader></Loader>
 
   return (
     <div className="py-16">
@@ -290,7 +292,7 @@ const AddJob = () => {
                     <Controller
                       name="applicationDeadline"
                       control={control}
-                      defaultValue={null} // Set initial value
+                      defaultValue={null}
                       render={({ field }) => (
                         <DatePicker
                           {...field}

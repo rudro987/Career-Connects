@@ -16,6 +16,15 @@ const ApplyNowForm = ({ singleJob }) => {
     formState: { errors },
   } = useForm();
 
+  const singleJobData = {
+    jobTitle: singleJob.jobTitle,
+    jobCategory: singleJob.jobCategory,
+    salaryRange: singleJob.salaryRange,
+    jobDescription: singleJob.jobDescription,
+    jobBanner: singleJob.jobBanner,
+  }
+
+
   const id = singleJob._id;
 
   const dateTime = new Date().toLocaleString("en-US", {
@@ -43,10 +52,10 @@ const ApplyNowForm = ({ singleJob }) => {
     const submittedAt = dateTime;
     const jobId = id;
 
-    const applicantInfo = { name, email, resume, submittedAt, jobId };
+    const applicantInfo = { ...singleJobData, name, email, resume, submittedAt, jobId };
     if (user.email === singleJob.submittedBy) {
       toast.error("You can't apply on your own Job Post!");
-    } else if (appliedSingleJob.email === email) {
+    } else if (appliedSingleJob && appliedSingleJob.email === email) {
       toast.error("You have already applied for this job!");
     } else {
       try {

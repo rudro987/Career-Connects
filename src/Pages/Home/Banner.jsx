@@ -4,11 +4,11 @@ const Banner = () => {
       <div className="w-full lg:h-[700px] flex-col md:flex">
         <div className="lg:min-h-[700px] relative bg-[url('https://reactjob.codebasket.xyz/assets/img/banner/banner-2.jpg')] bg-no-repeat bg-cover grid grid-cols-2">
           <div className="w-full">
-            <div className="px-10 py-8 lg:py-60 lg:px-32">
-              <h1 className="text-xl pl-10 lg:text-[44px] font-bold text-charcoalGray">
+            <div className="px-0 py-8 lg:py-60 lg:px-32">
+              <h1 className="text-sm sm:text-xl pl-10 lg:text-[44px] font-bold text-charcoalGray">
                 Welcome to CareerConnects
               </h1>
-              <p className="font-bold text-secondaryTextColor lg:pt-10 lg:text-center text-xs lg:text-xl">
+              <p className="font-bold text-secondaryTextColor lg:pt-10 text-center text-[12px] lg:text-xl">
                 World's number 1 job board!
               </p>
               <div>
@@ -18,7 +18,7 @@ const Banner = () => {
                 >
                   Label
                 </label>
-                <div className="flex rounded-lg shadow-sm justify-center pt-10">
+                <div className="flex rounded-lg shadow-sm justify-center pt-2 lg:pt-10">
                   <input
                     type="text"
                     id="hs-trailing-button-add-on-with-icon"

@@ -6,42 +6,42 @@ const Footer = () => {
     <footer className="bg-charcoalGray">
       <div className="max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-          <div className="col-span-full lg:col-span-1">
+          <div className="col-span-full lg:col-span-1 max-w-full mx-auto">
             <Link
-              className="flex-none text-xl font-semibold text-white/[.8]"
+              className="flex-none text-xl font-semibold text-white/[.8] text-center"
               href="#"
-              aria-label="Brand"
+              aria-label="CareerConnect"
             >
-              Brand
+              CareerConnect
             </Link>
           </div>
 
-          <div className="col-span-1">
-            <h4 className="font-semibold text-white/[.8]">Product</h4>
+          <div className="col-span-full lg:col-span-1">
+            <h4 className="font-semibold text-white/[.8] text-center">Navigation</h4>
 
-            <div className="mt-3 grid space-y-3">
+            <div className="mt-3 flex items-center justify-center gap-2 lg:grid lg:space-y-2">
               <p>
                 <Link
                   className="inline-flex gap-x-2 text-white/[.8] hover:text-gray-400"
-                  href="#"
+                  href="/all-jobs"
                 >
-                  Pricing
+                  All jobs
                 </Link>
               </p>
               <p>
                 <Link
                   className="inline-flex gap-x-2 text-white/[.8] hover:text-gray-400"
-                  href="#"
+                  href="/blog"
                 >
-                  Changelog
+                  Blog
                 </Link>
               </p>
               <p>
                 <Link
                   className="inline-flex gap-x-2 text-white/[.8] hover:text-gray-400"
-                  href="#"
+                  href="/user-profile"
                 >
-                  Docs
+                  User profile
                 </Link>
               </p>
             </div>
@@ -49,7 +49,7 @@ const Footer = () => {
 
 
           <div className="col-span-2">
-            <h4 className="font-semibold text-white/[.8]">Stay up to date</h4>
+            <h4 className="font-semibold text-white/[.8] text-center lg:text-start">Stay up to date</h4>
 
             <form>
               <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-3 bg-white rounded-md p-2">
@@ -72,13 +72,13 @@ const Footer = () => {
                   Subscribe
                 </button>
               </div>
-              <p className="mt-3 text-sm text-white/[.8]">
+              <p className="mt-3 text-sm text-white/[.8] text-center">
                 New UI kits or big discounts. Never spam.
               </p>
             </form>
           </div>
 
-          <div className="flex gap-5 justify-center items-center ml-20">
+          <div className="flex gap-5 justify-center items-center ml-20 max-w-full mx-auto">
             <a
               className="inline-flex justify-center items-center gap-x-3.5 w-10 h-10 text-center text-gray-400 hover:bg-white/[.1] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-900 transition"
               href="#"

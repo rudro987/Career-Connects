@@ -40,9 +40,7 @@ const AddJob = () => {
   });
 
   const formSubmit = async (data) => {
-    console.log(data)
     const applicantsNumber = parseInt(data.applicantsNumber)
-    console.log(applicantsNumber)
     const formData = new FormData();
     formData.append('jobTitle', data.jobTitle);
     formData.append('postedBy', data.postedBy);
@@ -50,6 +48,7 @@ const AddJob = () => {
     formData.append('salaryRange', data.salaryRange);
     formData.append('jobDescription', data.jobDescription);
     formData.append('postDate', data.postDate);
+    formData.append('submittedBy', user.email);
     const formatedDate = data.applicationDeadline.toLocaleString("en-US", {
         weekday: "short",
         year: "numeric",

@@ -11,6 +11,13 @@ const SingleJobDetails = () => {
     queryFn: async () => await getSingleJob(_id),
   });
 
+  const dateTime = new Date().toLocaleString("en-US", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
+
   if (isLoading) return <Loader></Loader>;
 
   return (
@@ -46,11 +53,23 @@ const SingleJobDetails = () => {
                 Job Description: {singleJob.jobDescription}
               </p>
               <div className="pt-5">
-        <button type="button" className="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-semibold rounded-md border border-transparent bg-oliveGreen text-white == hover:bg-oliveGreen/[.8] disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-overlay="#hs-vertically-centered-modal">
-          Apply Now
-        </button>
-        <ApplyNowForm></ApplyNowForm>
-      </div>
+                <div>
+                {dateTime < singleJob.applicationDeadline ? (
+                    <button className="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-400 text-white  disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Deadline is over</button>
+                ) : (
+                    <button
+                    type="button"
+                    id="applyBtn"
+                    className="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-oliveGreen text-white  disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    data-hs-overlay="#hs-static-backdrop-modal"
+                  >
+                    Apply Now
+                  </button>
+                )}
+                  
+                  <ApplyNowForm singleJob={singleJob}></ApplyNowForm>
+                </div>
+              </div>
             </div>
           </div>
         </>

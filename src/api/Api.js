@@ -10,6 +10,11 @@ export const postJob = async (jobData) => {
     return response.data;
 }
 
+export const appliedJob = async (jobData) => {
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/applied-jobs`, jobData);
+    return response.data;
+}
+
 export const getAllJobs = async () => {
     const response = await axios.get(`${import.meta.env.VITE_API_URL}/all-jobs`);
     return response.data;
@@ -17,5 +22,10 @@ export const getAllJobs = async () => {
 
 export const getSingleJob = async (jobId) => {
     const response = await axios.get(`${import.meta.env.VITE_API_URL}/all-jobs/${jobId}`);
+    return response.data;
+}
+
+export const getAppliedJobs = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/applied-jobs/`);
     return response.data;
 }

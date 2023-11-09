@@ -2,24 +2,61 @@ import { useQuery } from "@tanstack/react-query";
 import { getSingleJob } from "../../api/Api";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
+import ApplyNowForm from "./ApplyNowForm";
 
 const SingleJobDetails = () => {
-    const { _id } = useParams();
-    const { data: singleJob, isLoading } = useQuery({
-        queryKey: ["singleJob", _id],
-        queryFn: async () => await getSingleJob(_id),
-      });
+  const { _id } = useParams();
+  const { data: singleJob, isLoading } = useQuery({
+    queryKey: ["singleJob", _id],
+    queryFn: async () => await getSingleJob(_id),
+  });
 
-      const {companyLogo, jobBanner, 
-        jobTitle, jobDescription, salaryRange, applicantsNumber} = singleJob;
-      
-      if (isLoading) return <Loader></Loader>;
+  if (isLoading) return <Loader></Loader>;
 
-    return (
-        <div>
-            <h1>single job</h1>
-        </div>
-    );
+  return (
+    <div className="py-28 gap-10 sm:flex dark:bg-slate-900">
+      {singleJob && (
+        <>
+          <div className="flex-shrink-0 relative w-[600px] rounded-xl overflow-hidden pt-[40%] sm:rounded-xl">
+            <img
+              className="w-full h-full absolute top-0 start-0 object-cover"
+              src={singleJob.jobBanner}
+              alt="Image Description"
+            />
+          </div>
+          <div className="flex flex-wrap gap-10">
+            <div className="p-4 flex flex-col gap-3 h-full sm:p-0">
+              <h3 className="text-3xl mb-5 font-bold text-gray-800 dark:text-white">
+                Job Title: {singleJob.jobTitle}
+              </h3>
+              <div className="relative w-60 mb-5 h-32 pb-10 rounded-xl overflow-hidden sm:rounded-xl">
+                <img
+                  className="w-60 h-32 absolute top-0 start-0 object-cover"
+                  src={singleJob.companyLogo}
+                  alt="Image Description"
+                />
+              </div>
+              <p className="mt-1 text-gray-500 dark:text-gray-400">
+                Salary Range: {singleJob.salaryRange}
+              </p>
+              <p className="mt-1 text-gray-500 dark:text-gray-400">
+                Number of Applicants: {singleJob.applicantsNumber}
+              </p>
+              <p className="mt-1 text-gray-500 dark:text-gray-400">
+                Job Description: {singleJob.jobDescription}
+              </p>
+              <div className="pt-5">
+        <button type="button" className="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-semibold rounded-md border border-transparent bg-oliveGreen text-white == hover:bg-oliveGreen/[.8] disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-overlay="#hs-vertically-centered-modal">
+          Apply Now
+        </button>
+        <ApplyNowForm></ApplyNowForm>
+      </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default SingleJobDetails;

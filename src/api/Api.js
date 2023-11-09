@@ -34,8 +34,3 @@ export const deleteJob = async (id) => {
     const response = await axios.delete(`${import.meta.env.VITE_API_URL}/my-jobs/${id}`);
     return response.data;
 }
-
-export const updateJob = async (id, jobData) => {
-    const response = await axios.put(`${import.meta.env.VITE_API_URL}/my-jobs/${id}`, jobData);
-    return response.data;
-}

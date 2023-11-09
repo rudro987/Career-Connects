@@ -24,14 +24,6 @@ const AppliedJobs = () => {
 
   if (isLoading) return <Loader></Loader>;
 
-  //   if (filteredJobs?.length === 0) {
-  //     return (
-  //       <div className="w-full flex justify-center items-center min-h-[80vh] text-3xl font-semibold">
-  //         You haven't applied for any job yet!!
-  //       </div>
-  //     );
-  //   }
-
   return (
     <div className="py-28">
       <h1 className="text-3xl font-bold pb-10 text-center">Applied Jobs</h1>

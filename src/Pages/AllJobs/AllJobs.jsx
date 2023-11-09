@@ -21,6 +21,7 @@ const AllJobs = () => {
 
   return (
     <div className="flex flex-col py-28">
+    <h1 className="text-2xl font-bold text-center pb-10 underline">All Jobs</h1>
         <div className="-m-1.5 overflow-x-auto">
           <div className="p-1.5 min-w-full inline-block align-middle">
             <div className="overflow-hidden">

@@ -54,6 +54,9 @@ const UpdateJobs = ({ job }) => {
     try {
       await mutateAsync(data);
       toast.success("Job Updated Successfully");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000)
     } catch (error) {
       console.log("Error updating data: ", error.message);
     }

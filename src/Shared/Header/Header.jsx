@@ -69,26 +69,26 @@ const Header = () => {
         >
           <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">
             <Link
-              className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
+              className="font-medium text-charcoalGray hover:text-oliveGreen focus:text-oliveGreen sm:py-6"
               to="/"
               aria-current="page"
             >
               Home
             </Link>
             <Link
-              className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
+              className="font-medium text-charcoalGray hover:text-oliveGreen focus:text-oliveGreen sm:py-6"
               to="/all-jobs"
             >
               All Jobs
             </Link>
             <Link
-              className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
+              className="font-medium text-charcoalGray hover:text-oliveGreen focus:text-oliveGreen sm:py-6"
               to="/blog"
             >
               Blog
             </Link>
             <Link
-              className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
+              className="font-medium text-charcoalGray hover:text-oliveGreen focus:text-oliveGreen sm:py-6"
               to="/user-profile"
             >
               User Profile
@@ -96,19 +96,19 @@ const Header = () => {
             {user && (
               <>
                 <Link
-                  className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
+                  className="font-medium text-charcoalGray hover:text-oliveGreen focus:text-oliveGreen sm:py-6"
                   to="/add-a-job"
                 >
                   Add a Job
                 </Link>
                 <Link
-                  className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
+                  className="font-medium text-charcoalGray hover:text-oliveGreen focus:text-oliveGreen sm:py-6"
                   to="/my-jobs"
                 >
                   My Jobs
                 </Link>
                 <Link
-                  className="font-medium text-charcoalGray hover:text-charcoalGray/[.8] sm:py-6"
+                  className="font-medium text-charcoalGray hover:text-oliveGreen focus:text-oliveGreen sm:py-6"
                   to="/applied-jobs"
                 >
                   Applied Jobs
@@ -129,11 +129,11 @@ const Header = () => {
                         <img
                       src={user.photoURL || `https://i.ibb.co/sH0Fh3T/user.png`}
                       alt={user.displayName}
-                      className="rounded-full w-12"
+                      className="rounded-full w-12 cursor-pointer"
                     />
                     
                     {isDropDown && (
-                      <div className="absolute w-48 -ml-10 shadow-md rounded-md px-5 py-6 text-center font-medium text-charcoalGray hover:text-charcoalGray/[.8] flex flex-col gap-4">
+                      <div className="absolute z-20 w-48 -ml-10 shadow-md bg-white rounded-md px-5 py-6 text-center font-medium text-charcoalGray hover:text-oliveGreen flex flex-col gap-4">
                         <p className="font-bold">Hello, {user.displayName} !</p>
                         <Link to="#" className="underline">Update Profile</Link>
                         <Link

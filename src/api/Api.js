@@ -26,7 +26,7 @@ export const getSingleJob = async (jobId) => {
 }
 
 export const getAppliedJobs = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/applied-jobs/`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/applied-jobs/`, { withCredentials: true} );
     return response.data;
 }
 

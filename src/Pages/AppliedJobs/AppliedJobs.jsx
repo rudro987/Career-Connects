@@ -25,8 +25,8 @@ const AppliedJobs = () => {
   const handleFilter = filter => {
     if(filter === 'All'){
       setFilteredJobList(appliedJobs);
-    }else if(filter === 'On Site'){
-      const onSiteJobs = appliedJobs.filter(job => job.jobCategory === 'On Site');
+    }else if(filter === 'On site'){
+      const onSiteJobs = appliedJobs.filter(job => job.jobCategory === 'On site');
       setFilteredJobList(onSiteJobs);
     }else if(filter === 'Remote'){
       const remoteJobs = appliedJobs.filter(job => job.jobCategory === 'Remote');
@@ -52,7 +52,7 @@ const AppliedJobs = () => {
           onChange={(e) => handleFilter(e.target.value)}
         >
           <option value="All">All</option>
-          <option value="On Site">On Site</option>
+          <option value="On site">On site</option>
           <option value="Remote">Remote</option>
           <option value="Hybrid">Hybrid</option>
           <option value="Part-Time">Part-Time</option>

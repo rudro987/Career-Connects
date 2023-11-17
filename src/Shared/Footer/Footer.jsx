@@ -12,7 +12,7 @@ const Footer = () => {
               href="#"
               aria-label="CareerConnect"
             >
-              CareerConnect
+              CareerConnects
             </Link>
           </div>
 
@@ -72,9 +72,6 @@ const Footer = () => {
                   Subscribe
                 </button>
               </div>
-              <p className="mt-3 text-sm text-white/[.8] text-center">
-                New UI kits or big discounts. Never spam.
-              </p>
             </form>
           </div>
 
@@ -160,7 +157,7 @@ const Footer = () => {
         <div className="mt-5 sm:mt-12 grid gap-y-2 sm:gap-y-0 sm:flex sm:justify-center sm:items-center">
           <div className="flex justify-center items-center">
             <p className="text-sm text-white">
-              © 2022 Preline. All rights reserved.
+              © 2023 CareerConnects. All rights reserved.
             </p>
           </div>
 

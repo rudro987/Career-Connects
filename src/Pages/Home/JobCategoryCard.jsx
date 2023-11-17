@@ -25,7 +25,7 @@ const JobCategoryCard = ({job}) => {
         <span className="font-bold">Applicants Number:</span> {applicantsNumber}
         </p>
         <Link
-          className="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+          className="mt-3 inline-flex items-center gap-x-1 text-sm rounded-lg border border-transparent text-oliveGreen font-bold disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
           to={`/all-jobs/${_id}`}
         >
           View Details

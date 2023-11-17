@@ -6,21 +6,16 @@ import ApplyNowForm from "./ApplyNowForm";
 
 const SingleJobDetails = () => {
   const { _id } = useParams();
+  
   const { data: singleJob, isLoading } = useQuery({
     queryKey: ["singleJob", _id],
     queryFn: async () => await getSingleJob(_id),
   });
 
-  const dateTime = new Date().toLocaleString("en-US", {
-    weekday: "short",
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-  });
-
   if (isLoading) return <Loader></Loader>;
 
   return (
+    <div className="max-w-[85rem] mx-auto">
     <div className="py-28 gap-10 sm:flex dark:bg-slate-900">
       {singleJob && (
         <>
@@ -38,7 +33,7 @@ const SingleJobDetails = () => {
               </h3>
               <div className="relative w-60 mb-5 h-32 pb-10 rounded-xl overflow-hidden sm:rounded-xl">
                 <img
-                  className="w-60 h-32 absolute top-0 start-0 object-cover"
+                  className="w-60 h-32 absolute top-0 start-0 object-fit"
                   src={singleJob.companyLogo}
                   alt="Image Description"
                 />
@@ -54,7 +49,7 @@ const SingleJobDetails = () => {
               </p>
               <div className="pt-5">
                 <div>
-                {dateTime < singleJob.applicationDeadline ? (
+                {new Date() > new Date(singleJob.applicationDeadline) ? (
                     <button className="py-4 px-8 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-400 text-white  disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Deadline is over</button>
                 ) : (
                     <button
@@ -74,6 +69,7 @@ const SingleJobDetails = () => {
           </div>
         </>
       )}
+    </div>
     </div>
   );
 };

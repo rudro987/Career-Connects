@@ -25,7 +25,7 @@ const AllJobsTable = ({ job }) => {
         <Link
           type="button"
           to={`/all-jobs/${_id}`}
-          className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+          className="inline-flex items-center gap-x-2 text-sm rounded-lg border border-transparent text-oliveGreen font-bold hover:text-oliveGreen/[.8] disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
         >
           View Details
         </Link>

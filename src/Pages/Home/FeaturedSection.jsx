@@ -54,7 +54,7 @@ const FeaturedSection = () => {
               A commitment to excellence
               </h3>
               <p className="mt-4 text-sm leading-6 text-black dark:text-secondaryTextColor">
-              The perpetual onward development of JobBoard.com means that our customers can be assured of a future proof solution - one that will grow with them
+              The perpetual onward development of CareerConnects means that our customers can be assured of a future proof solution - one that will grow with them
               </p>
             </div>
             <div>

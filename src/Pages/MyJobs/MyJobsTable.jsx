@@ -36,7 +36,7 @@ const MyJobsTable = ({ job }) => {
   const handleDelete = async () => {
     try {
       await mutateAsync(_id);
-    toast.success("Job Deleted Successfully");
+      toast.success("Job Deleted Successfully");
     } catch (error) {
       console.error('error deleting data: ', error.message)
     }
@@ -78,7 +78,7 @@ const MyJobsTable = ({ job }) => {
         <button
           type="button"
           data-hs-overlay="#hs-slide-down-animation-modal"
-          className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+          className="inline-flex items-center gap-x-2 text-sm font-bold rounded-lg border border-transparent text-oliveGreen hover:text-oliveGreen disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
         >
           Update
         </button>
@@ -97,11 +97,12 @@ const MyJobsTable = ({ job }) => {
         <div>
           <button
             type="button"
-            className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            data-hs-overlay="#hs-slide-down-animation-modal"
+            className="inline-flex items-center gap-x-2 text-sm font-bold rounded-lg border border-transparent text-oliveGreen hover:text-oliveGreen disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+            data-hs-overlay="#hs-slide-up-animation-modal"
           >
             Delete
           </button>
+          
           <DeleteConfirmation handleDelete={handleDelete} />
         </div>
       </td>

@@ -18,30 +18,23 @@ const JobCategoryTabs = () => {
   const handleFilter = filter => {
     if(filter === 'All'){
         setFilteredJobs(jobs);
-    }else if(filter === 'On Site'){
-      const onSiteJobs = jobs.filter(job => job.jobCategory === 'On Site');
-      console.log('setting jobs data as: ', onSiteJobs )
+    }else if(filter === 'On site'){
+      const onSiteJobs = jobs.filter(job => job.jobCategory === 'On site');
       setFilteredJobs(onSiteJobs);
     }else if(filter === 'Remote'){
       const remoteJobs = jobs.filter(job => job.jobCategory === 'Remote');
-      console.log('setting jobs data as: ', remoteJobs )
       setFilteredJobs(remoteJobs);
       
     }else if(filter === 'Hybrid'){
       const hybridJobs = jobs.filter(job => job.jobCategory === 'Hybrid');
-      console.log('setting jobs data as: ', hybridJobs )
       setFilteredJobs(hybridJobs);
     }else if(filter === 'Part-Time'){
       const partTimeJobs = jobs.filter(job => job.jobCategory === 'Part-Time');
-      console.log('setting jobs data as: ', partTimeJobs )
       setFilteredJobs(partTimeJobs);
     }
   }
 
-
-  
-
-  loading && <Loader></Loader>;
+  const isLoading = loading && <Loader></Loader>;
 
   return (
     <div>
@@ -58,28 +51,30 @@ const JobCategoryTabs = () => {
         >
           <button
             type="button"
-            className="hs-tab-active:font-semibold hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-blue-500 active"
+            id="all-tab"
+            className="hs-tab-active:font-semibold hs-tab-active:border-oliveGreen hs-tab-active:text-oliveGreen py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-oliveGreen font-bold focus:outline-none focus:text-oliveGreen disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-blue-500 active"
             role="tab"
             onClick={() => {
                 handleFilter("All");
-
             }}
           >
             All
           </button>
           <button
             type="button"
-            className="hs-tab-active:font-semibold hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-blue-500"
+            id="on-site-tab"
+            className="hs-tab-active:font-semibold hs-tab-active:border-oliveGreen hs-tab-active:text-oliveGreen py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-oliveGreen font-bold focus:outline-none focus:text-oliveGreen disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-blue-500"
             role="tab"
             onClick={() => {
-                handleFilter("On Site");
+                handleFilter("On site");
             }}
           >
-            On Site
+            On site
           </button>
           <button
             type="button"
-            className="hs-tab-active:font-semibold hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-blue-500"
+            id="remote-tab"
+            className="hs-tab-active:font-semibold hs-tab-active:border-oliveGreen hs-tab-active:text-oliveGreen py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-oliveGreen font-bold focus:outline-none focus:text-oliveGreen disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-blue-500"
             role="tab"
             onClick={() => {
                 handleFilter("Remote");
@@ -89,7 +84,8 @@ const JobCategoryTabs = () => {
           </button>
           <button
             type="button"
-            className="hs-tab-active:font-semibold hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-blue-500"
+            id="hybrid-tab"
+            className="hs-tab-active:font-semibold hs-tab-active:border-oliveGreen hs-tab-active:text-oliveGreen py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-oliveGreen font-bold focus:outline-none focus:text-oliveGreen disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-blue-500"
             role="tab"
             onClick={() => {
                 handleFilter("Hybrid");
@@ -99,7 +95,8 @@ const JobCategoryTabs = () => {
           </button>
           <button
             type="button"
-            className="hs-tab-active:font-semibold hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-blue-500"
+            id="part-time-tab"
+            className="hs-tab-active:font-semibold hs-tab-active:border-oliveGreen hs-tab-active:text-oliveGreen py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-oliveGreen font-bold focus:outline-none focus:text-oliveGreen disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:text-oliveGreen"
             role="tab"
             onClick={() => {
                 handleFilter("Part-Time");
@@ -112,8 +109,8 @@ const JobCategoryTabs = () => {
       <div className="mt-3">
         <div
         >
-          <div className="text-charcoalGray dark:text-gray-400">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 gap-20">
+          <div className="text-charcoalGray dark:text-gray-400 bg-pearlWhite rounded-md max-w-full px-7 justify-items-center mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 gap-5">
               {filteredJobs &&
                 filteredJobs.map((job) => (
                   <JobCategoryCard key={job._id} job={job}></JobCategoryCard>
@@ -121,7 +118,7 @@ const JobCategoryTabs = () => {
             </div>
           </div>
         </div>
-       
+       {isLoading}
         
         
       </div>

@@ -26,7 +26,7 @@ const MyJobs = () => {
 
 
   return (
-    <div className="min-h-[70vh] py-28">
+    <div className="min-h-[70vh] py-28 max-w-[90rem] mx-auto">
     <h1 className="text-2xl font-bold text-center pb-10 underline">My Jobs</h1>
       <div className="flex flex-col">
         <div className="-m-1.5 overflow-x-auto">

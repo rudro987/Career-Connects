@@ -344,6 +344,7 @@ const AddJob = () => {
                 >
                   Post Job
                 </button>
+                {loading && <div>Posting your job..Please wait...</div>}
               </div>
             </form>
           </div>

@@ -13,6 +13,7 @@ const ApplyNowForm = ({ singleJob }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -53,10 +54,13 @@ const ApplyNowForm = ({ singleJob }) => {
     const jobId = id;
 
     const applicantInfo = { ...singleJobData, name, email, resume, submittedAt, jobId };
+    const errorText = document.getElementById("errorText");
     if (user.email === singleJob.submittedBy) {
-      toast.error("You can't apply on your own Job Post!");
+      errorText.innerText = "You can't apply on your own Job Post!";
+      reset();
     } else if (appliedSingleJob && appliedSingleJob.email === email) {
-      toast.error("You have already applied for this job!");
+      errorText.innerText = "You have already applied for this job!";
+      reset();
     } else {
       try {
         await mutateAsync(applicantInfo);
@@ -176,6 +180,7 @@ const ApplyNowForm = ({ singleJob }) => {
                 >
                   Submit Application
                 </button>
+                <p id="errorText" className="text-red-700 font-bold"></p>
               </div>
             </form>
           </div>

@@ -1,4 +1,25 @@
+import { useState } from "react";
+
 const Banner = () => {
+  const [searchValue, setSearchValue] = useState('');
+  
+  const clickHandler = () => {
+    if(searchValue === ''){
+      window.location.href = '#all-tab';
+    }else{
+      if(searchValue === 'On site'){
+        window.location.href = '#on-site-tab';
+      }else if(searchValue === 'Remote'){
+        window.location.href = '#remote-tab';
+      }else if(searchValue === 'Hybrid'){
+        window.location.href = '#hybrid-tab';
+      }else if(searchValue === 'Part-Time'){
+        window.location.href = '#part-time-tab';
+      }
+    }
+  };
+
+
   return (
     <div>
       <div className="w-full lg:h-[700px] flex-col md:flex">
@@ -21,6 +42,7 @@ const Banner = () => {
                 <div className="flex rounded-lg shadow-sm justify-center pt-2 lg:pt-10">
                   <input
                     type="text"
+                    onChange={(e) => setSearchValue(e.target.value)}
                     id="hs-trailing-button-add-on-with-icon"
                     placeholder="Search by category..."
                     name="hs-trailing-button-add-on-with-icon"
@@ -28,7 +50,8 @@ const Banner = () => {
                   />
                   <button
                     type="button"
-                    className="w-[2.875rem] h-[2.875rem] flex-shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-e-md border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    onClick={clickHandler}
+                    className="w-[2.875rem] h-[2.875rem] flex-shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-e-md border border-transparent bg-oliveGreen text-white hover:bg-oliveGreen/[0.8] disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                   >
                     <svg
                       className="flex-shrink-0 h-4 w-4"

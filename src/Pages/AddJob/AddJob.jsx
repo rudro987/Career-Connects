@@ -10,6 +10,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useMutation } from "@tanstack/react-query";
 import { postJob } from "../../api/Api";
 import Loader from "../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const AddJob = () => {
   const { user, loading } = useContext(AuthContext);
@@ -103,6 +104,10 @@ const AddJob = () => {
 
   return (
     <div className="py-16">
+    <Helmet>
+        <meta charSet="utf-8" />
+        <title>Add a Job - Career Connects</title>
+      </Helmet>
       <div className="mt-7 max-w-md mx-auto bg-[#f1f7f4] border border-lightGray rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <div className="p-4 sm:p-7">
           <div className="text-center">

@@ -1,11 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
   return (
     <div className="max-w-[85rem] mx-auto py-28 px-10">
+    <Helmet>
+        <meta charSet="utf-8" />
+        <title>Profile - Career Connects</title>
+      </Helmet>
       <h1 className="text-3xl text-center font-bold">
         {user.displayName}'s Profile
       </h1>

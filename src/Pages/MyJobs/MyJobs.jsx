@@ -4,6 +4,7 @@ import { getAllJobs } from "../../api/Api";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import MyJobsTable from "./MyJobsTable";
+import { Helmet } from "react-helmet";
 
 const MyJobs = () => {
   const { user } = useContext(AuthContext);
@@ -27,6 +28,10 @@ const MyJobs = () => {
 
   return (
     <div className="min-h-[70vh] py-28 max-w-[90rem] mx-auto">
+    <Helmet>
+        <meta charSet="utf-8" />
+        <title>My Jobs - Career Connects</title>
+      </Helmet>
     <h1 className="text-2xl font-bold text-center pb-10 underline">My Jobs</h1>
       <div className="flex flex-col">
         <div className="-m-1.5 overflow-x-auto">

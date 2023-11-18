@@ -4,6 +4,7 @@ import { getAllJobs } from "../../api/Api";
 import Loader from "../../components/Loader";
 import AllJobsTable from "./AllJobsTable";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 const AllJobs = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -38,6 +39,10 @@ const AllJobs = () => {
 
   return (
     <div className="max-w-[85rem] mx-auto">
+    <Helmet>
+        <meta charSet="utf-8" />
+        <title>All Jobs - Career Connects</title>
+      </Helmet>
       <div className="flex flex-col py-28">
         <h1 className="text-2xl font-bold text-center pb-10 underline">
           All Jobs

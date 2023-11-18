@@ -4,6 +4,7 @@ import { getAppliedJobs } from "../../api/Api";
 import AppliedJobCard from "./AppliedJobCard";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const AppliedJobs = () => {
   const [appliedJobs, setAllAppliedJobs] = useState([]);
@@ -16,34 +17,48 @@ const AppliedJobs = () => {
 
   useEffect(() => {
     if (allAppliedJobs) {
-      const filteredJobs = allAppliedJobs.filter((job) => job.email === user.email);
+      const filteredJobs = allAppliedJobs.filter(
+        (job) => job.email === user.email
+      );
       setAllAppliedJobs(filteredJobs);
       setFilteredJobList(filteredJobs);
     }
   }, [allAppliedJobs, user.email]);
-  
-  const handleFilter = filter => {
-    if(filter === 'All'){
+
+  const handleFilter = (filter) => {
+    if (filter === "All") {
       setFilteredJobList(appliedJobs);
-    }else if(filter === 'On site'){
-      const onSiteJobs = appliedJobs.filter(job => job.jobCategory === 'On site');
+    } else if (filter === "On site") {
+      const onSiteJobs = appliedJobs.filter(
+        (job) => job.jobCategory === "On site"
+      );
       setFilteredJobList(onSiteJobs);
-    }else if(filter === 'Remote'){
-      const remoteJobs = appliedJobs.filter(job => job.jobCategory === 'Remote');
+    } else if (filter === "Remote") {
+      const remoteJobs = appliedJobs.filter(
+        (job) => job.jobCategory === "Remote"
+      );
       setFilteredJobList(remoteJobs);
-    }else if(filter === 'Hybrid'){
-      const hybridJobs = appliedJobs.filter(job => job.jobCategory === 'Hybrid');
+    } else if (filter === "Hybrid") {
+      const hybridJobs = appliedJobs.filter(
+        (job) => job.jobCategory === "Hybrid"
+      );
       setFilteredJobList(hybridJobs);
-    }else if(filter === 'Part-Time'){
-      const partTimeJobs = appliedJobs.filter(job => job.jobCategory === 'Part-Time');
+    } else if (filter === "Part-Time") {
+      const partTimeJobs = appliedJobs.filter(
+        (job) => job.jobCategory === "Part-Time"
+      );
       setFilteredJobList(partTimeJobs);
     }
-  }
+  };
 
   if (isLoading) return <Loader></Loader>;
 
   return (
     <div className="py-28 max-w-[85rem] mx-auto">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Applied Jobs - Career Connects</title>
+      </Helmet>
       <h1 className="text-3xl font-bold pb-10 text-center">Applied Jobs</h1>
       <div className="pb-10 flex gap-5 items-center">
         <h1>Filter by Category: </h1>
@@ -58,21 +73,18 @@ const AppliedJobs = () => {
           <option value="Part-Time">Part-Time</option>
         </select>
       </div>
-      
-        {filteredJobList.length === 0 ? (
-          <div className="w-full flex justify-center items-center min-h-[50vh] text-3xl font-semibold">
-            You haven't applied for any job in this category yet!!
-          </div>
-        ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {
-            filteredJobList.map((job) => (
+
+      {filteredJobList.length === 0 ? (
+        <div className="w-full flex justify-center items-center min-h-[50vh] text-3xl font-semibold">
+          You haven't applied for any job in this category yet!!
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {filteredJobList.map((job) => (
             <AppliedJobCard key={job._id} job={job}></AppliedJobCard>
-          ))
-          }
-          </div>
-        )}
-      
+          ))}
+        </div>
+      )}
     </div>
   );
 };

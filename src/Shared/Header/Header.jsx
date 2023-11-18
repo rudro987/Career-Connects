@@ -29,7 +29,7 @@ const Header = () => {
             to="#"
             aria-label="Brand"
           >
-            CareerConnects
+            <span className="flex gap-2 items-center"><img src="https://i.ibb.co/881WvTD/Career-Conencts.jpg" width={50} height={50} />CareerConnects</span>
           </Link>
           <div className="sm:hidden">
             <button

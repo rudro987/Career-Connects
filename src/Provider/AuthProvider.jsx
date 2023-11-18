@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
             }
         })
         return () => unSubscribe();
-    }, []);
+    }, [user?.email]);
 
     const authenticationInfo = {user, setUser, registerUser, loading, userLogin, loginWithGoogle, logOutUser};
 

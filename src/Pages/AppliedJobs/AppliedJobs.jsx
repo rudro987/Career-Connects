@@ -11,7 +11,7 @@ const AppliedJobs = () => {
   const { user } = useContext(AuthContext);
   const { data: allAppliedJobs, isLoading } = useQuery({
     queryKey: ["allAppliedJobs"],
-    queryFn: async () => await getAppliedJobs(),
+    queryFn: async () => await getAppliedJobs(user.email),
   });
 
   useEffect(() => {

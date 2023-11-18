@@ -34,8 +34,6 @@ const JobCategoryTabs = () => {
     }
   }
 
-  const isLoading = loading && <Loader></Loader>;
-
   return (
     <div>
       <div className="mx-auto max-w-xl text-center">
@@ -111,15 +109,12 @@ const JobCategoryTabs = () => {
         >
           <div className="text-charcoalGray dark:text-gray-400 bg-pearlWhite rounded-md max-w-full px-7 justify-items-center mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 gap-5">
-              {filteredJobs &&
-                filteredJobs?.map((job) => (
+              {Array.isArray(filteredJobs) && filteredJobs?.map((job) => (
                   <JobCategoryCard key={job._id} job={job}></JobCategoryCard>
                 ))}
             </div>
           </div>
         </div>
-       {isLoading}
-        
         
       </div>
     </div>

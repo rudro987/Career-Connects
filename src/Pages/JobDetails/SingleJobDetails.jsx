@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 import { getSingleJob } from "../../api/Api";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
@@ -6,10 +8,13 @@ import ApplyNowForm from "./ApplyNowForm";
 
 const SingleJobDetails = () => {
   const { _id } = useParams();
+  const { user } = useContext(AuthContext);
+
+  console.log(user);
   
   const { data: singleJob, isLoading } = useQuery({
     queryKey: ["singleJob", _id],
-    queryFn: async () => await getSingleJob(_id),
+    queryFn: async () => await getSingleJob(_id, user.email),
   });
 
   if (isLoading) return <Loader></Loader>;

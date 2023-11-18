@@ -22,7 +22,7 @@ const routes = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/all-jobs')
+                loader: () => fetch('https://server-six-gilt.vercel.app/all-jobs')
             },
             {
                 path: "/login",

@@ -4,7 +4,7 @@ This is a Job Board built using Mern stack.
 
 ## Live Website
 
-Visit [Career Connects](#your-live-website-link)
+Visit [Career Connects](https://career-connects.web.app/)
 
 ## Features
 

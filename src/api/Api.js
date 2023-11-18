@@ -25,13 +25,13 @@ export const getAllJobs = async () => {
     return response.data;
 }
 
-export const getSingleJob = async (jobId) => {
-    const response = await axiosSecure.get(`/all-jobs/${jobId}`);
+export const getSingleJob = async (jobId, email) => {
+    const response = await axiosSecure.get(`/all-jobs/${jobId}?email=${email}`);
     return response.data;
 }
 
-export const getAppliedJobs = async () => {
-    const response = await axiosSecure.get('/applied-jobs/' );
+export const getAppliedJobs = async (email) => {
+    const response = await axiosSecure.get(`/applied-jobs/?email=${email}` );
     return response.data;
 }
 

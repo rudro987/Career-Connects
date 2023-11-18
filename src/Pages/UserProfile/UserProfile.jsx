@@ -10,7 +10,7 @@ const UserProfile = () => {
         {user.displayName}'s Profile
       </h1>
       <div className="pt-10">
-        <div className="bg-white sm:flex gap-10 dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+        <div className="bg-white sm:flex gap-20 justify-center dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
           <div className="flex-shrink-0 items-center relative w-full overflow-hidden pt-[40%] sm:rounded-xl sm:max-w-[25rem] md:rounded-lg md:max-w-md">
             <img
               className="w-full h-full absolute top-0 start-0 object-cover"

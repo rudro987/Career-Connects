@@ -27,7 +27,7 @@ const Header = () => {
           <Link
             className="flex-none text-xl font-semibold text-charcoalGray"
             to="#"
-            aria-label="Brand"
+            aria-label="CareerConnects"
           >
             <span className="flex gap-2 items-center"><img src="https://i.ibb.co/881WvTD/Career-Conencts.jpg" width={50} height={50} />CareerConnects</span>
           </Link>
@@ -135,7 +135,7 @@ const Header = () => {
                     {isDropDown && (
                       <div className="absolute z-20 w-48 -ml-10 shadow-md bg-white rounded-md px-5 py-6 text-center font-medium text-charcoalGray hover:text-oliveGreen flex flex-col gap-4">
                         <p className="font-bold">Hello, {user.displayName} !</p>
-                        <Link to="#" className="underline">Update Profile</Link>
+                        <Link to="/user-profile" className="underline">Profile</Link>
                         <Link
                           type="button"
                           onClick={handleLogOut}
